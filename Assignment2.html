@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       
+<!-- Create 2 groups of checkboxes and display all the values of the checkboxes checked by the user. Same scenario as we did 
+with radio input types in the class. -->
+<!--if we set their names to be the same , then we can not select more than 1 options at once.-->
+
+<script>
+    function getValues(){
+        var a = document.getElementsByName('gr1');
+        for (let i = 0; i <= a.length - 1; i++) {
+           if(a[i].checked){
+                 document.getElementById("resulta").innerHTML = "Group A: " + (a[i].value).toUpperCase();
+           }
+        }
+        var b = document.getElementsByName('gr2');
+        for (let i = 0; i <= b.length - 1; i++) {
+           if(b[i].checked){
+                 document.getElementById("resultb").innerHTML = "Group B: " + (b[i].value).toUpperCase();
+           }
+        }
+      
+    }
+</script>
+
+
+</head>
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+DRINKS:<br>
+<pre>Group A</pre>
+<input class = "groupa" type="checkbox" name="gr1" checked value="coke">Coke</input><br>
+<input class = "groupa" type="checkbox" name="gr1" value="sprite">Sprite</input><br>
+<input class = "groupa" type="checkbox" name="gr1" value="pepsi">Pepsi</input><br>
+<input class = "groupa" type="checkbox" name="gr1" value="fanta">Fanta</input><br>
+<pre>Group B</pre>
+<input class = "groupb" type="checkbox" name="gr2" checked value="hamburger">Hamburger</input><br>
+<input class = "groupb" type="checkbox" name="gr2" value="sandwich">Sandwich</input><br>
+<input class = "groupb" type="checkbox" name="gr2" value="pizza">Pizza</input><br>
+<input class = "groupb" type="checkbox" name="gr2" value="hotpot">Hotpot</input><br>
+<hr>
+<input type="button" onclick="getValues()" value="CLICK">
+<br>
+<label id="resulta"></label>
+</br>
+<label id="resultb"></label>
+
+</body>
+</html>

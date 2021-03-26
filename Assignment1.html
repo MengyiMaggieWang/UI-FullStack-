@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Checkbox to control Textbox</title>
+</head>
+<!--Use a checkbox to control the readonly property of a textbox. 
+    If checkbox is check make the textbox readonly and
+If the check is unchecked make the textbox editable-->
+<body>
+    <script type="text/javascript">
+        function EnableDisableTextBox(ColorFavor)
+        {
+          var favouritecolor = document.getElementById("favouritecolor");
+          favouritecolor.disabled = ColorFavor.checked ? true:false;
+          //if cf.checked=true then fc.diabled=true else fc.disabled=false
+         if(!favouritecolor.disabled)
+        {
+            favouritecolor.focus();
+        } // this is to set focus for textbox when it is not disabled or editable
+    } 
+    
+    </script>
+
+    <label for="ColorFavor"> 
+        <input type="checkbox" id="ColorFavor" onclick="EnableDisableTextBox(this)"/> 
+        Do you like Purple? </label>
+    <br/>Type your favourite color:
+    <input type="text" id="favouritecolor" disabled="disabled"/>
+    
+</body>
+
+</html>    
+
+
