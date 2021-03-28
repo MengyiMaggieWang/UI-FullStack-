@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms for inputs</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+      /* look for label+span and after span the padding is 15px */
+        label span::after{ 
+            padding:15px;
+        } 
+          /* look for label + input , if input meets the condition ,then add pseudo element after span which is X */
+        label input:invalid+span::after{
+            content: "❌";
+        }
+    
+        label input:valid+span::after{
+            content: "\2713";
+        }
+    </style>
+</head>
+<body>
+    <form>
+    <label for="First">FIRST NAME</label>
+    <input id ="First" type="text" value="SAM" requiered readonly placeholder="ALL IN CAPS">
+    <br>
+    <label for="email">Email</label>
+    <input id ="email" type="email" value="a@a.aa" requiered pattern="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,2}\b" pattern placeholder="Email">
+    <br>
+    <label for="Phone">Phone</label>
+    <input id ="Phone" type="tel" requiered pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" pattern placeholder="123-456-7890">
+     <br>
+     <input type="time" min="09:00" max="18:00" required>
+     <small>Office Hours are from 9 am to 6 pm</small>
+     <br>
+
+     <label>Choose your preferred date(requried, April 12th to 20th)
+     <input type="date" min="2021-04-12" max="2021-04-20"/> 
+     <span></span>
+    </label>
+
+    <hr>
+    <input type="Submit"></button>
+    </form>
+</body>
+</html>
+
+
+
+
