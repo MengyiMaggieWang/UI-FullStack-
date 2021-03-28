@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio and click botton to display the value checked </title>
+</head>
+
+<script>
+   function getValues()
+   {
+       var r = document.getElementsByTagName('input');
+for (let i = 0; i < r.length-1; i++) {   
+    if (r[i].checked) 
+    document.getElementById("result").innerHTML =(r[i].value).toUpperCase();    
+}
+   }
+</script>
+
+
+<body style="font-family:Verdana, Geneva, Tahoma, sans-serif;">
+    HOBBIES: <br>
+    <input type="radio" name="gr1"checked value="Painting">Painting</input> <br>   
+    <input type="radio" name="gr1"value="singing">Singing</input> <br>   
+    <input type="radio" name="gr1" value="Cooking">Cooking</input> <br>   
+    <input type="radio" name="gr1" value="Coding">Coding</input> <br> 
+    <hr>
+    <input type="button" onclick="getValues()" value="CLICK">
+    <br>
+    <label id="result"> </label>
+</body>
+</html>
