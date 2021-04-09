@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- align-content determines the spacing between lines.
+
+    align-items determines how the items as a whole are aligned within the container.
+    
+    When there is only one line, align-content has no effect-->
+
+    <style>
+        @import "compass/css3";
+
+        .flex-container {
+            /* align-items are for single line flexible boxes. */
+            width: 900px;
+            align-items: center;
+
+
+            margin: auto;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+
+
+            background: lightblue;
+            height: 500px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .flex-item {
+            background: purple;
+            padding: 5px;
+            width: 200px;
+            height: 150px;
+            margin-top: 10px;
+
+        }
+
+        .flex-item-1 {
+            height: 200px;
+        }
+
+        .flex-item-2 {
+            height: 250px;
+        }
+
+
+        .flex-item-3 {
+            height: 350px;
+        }
+
+
+        .flex-item-4 {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class="flex-container">
+        <li class="flex-item flex-item-1">1</li>
+        <li class="flex-item flex-item-2">2</li>
+        <li class="flex-item flex-item-3">3</li>
+        <li class="flex-item flex-item-4">4</li>
+    </ul>
+
+</body>
+
+
+</html>
