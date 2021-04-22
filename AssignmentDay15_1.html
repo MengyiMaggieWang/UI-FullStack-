@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compare two objects to determine if the first one contains equivalent property values to the second one. 
+        reference
+    </title>
+</head>
+
+<script>
+    //The hasOwnProperty() method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
+    // The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+    //The Object.keys() method returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would.
+    //The logical AND (&&) operator (logical conjunction) for a set of operands is true if and only if all of its operands are true. 
+    const match = (first, second) =>
+        Object.keys(second).every(key => first.hasOwnProperty(key) && first[key] === second[key]); // make sure every keys of first obj has the same keys and values as second obj 
+    console.log(match({ firstame: 'maggie', lastname: 'wang' }, { firstame: 'mengyi', lastname: 'wang' })); // false
+    console.log(match({ firstame: 'maggie', lastname: 'wang' }, { firstame: 'maggie', lastname: 'wang' })); // true
+    console.log(match({ firstame: 'maggie', lastname: 'wang' }, { firstame: 'maggie', lastname: 'ang' })); // false
+</script>
+
+<body>
+
+</body>
+
+</html>

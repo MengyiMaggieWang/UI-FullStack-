@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Converts a comma-separated values string to a 2D array</title>
+</head>
+<script>
+    const to2Darray = (data, delimiter = ',', omitFirstRow = false) =>
+        data
+            .slice(omitFirstRow ? data.indexOf('\n') + 1 : 0) //omitFirstRow to include the first row (title row)
+            .split('\n')//Use String.split('\n') to create a string for each row, then String.split(delimiter) to separate the values in each row. 
+            .map(v => v.split(delimiter));
+
+    console.log(to2Darray('head1,head2\na,b\nc,d', ',', true));
+</script>
+
+<body>
+
+</body>
+
+</html>
