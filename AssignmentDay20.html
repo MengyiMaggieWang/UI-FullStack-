@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"</script>
+    <title>Document</title>
+</head>
+<style>
+    .democlass {
+        color: Purple;
+    }
+</style>
+<p>Click the button to create more button elements and insert them into the end of the body.</p>
+
+<body>
+    <button onclick="myFunction()">Click Me</button> <br>
+
+
+    <ul id="myList">
+        <li>Harry</li>
+        <li>Potter</li>
+    </ul>
+
+    <p>Click the button to append an item to the end of the list.</p>
+
+    <button onclick="myFunction1()">Click Me1</button>
+
+    <p>Click the button to append an item to the beginning of the list.</p>
+
+    <button onclick="myFunction2()">Click Me2</button>
+
+    <!-- <p>Click the button to prepend an item to the beginning of the list.</p>
+    <button id="btn3">Prepend text</button> -->
+
+    <p>Click the button to replace the first child node of ul to Maggie</p>
+
+    <button onclick="myFunction3()">Click Me3</button>
+
+    <p>Click the button to remove the first child node of ul</p>
+
+    <button onclick="myFunction4()">Click Me4</button>
+
+
+    <p>Click the button to clone the last child node of ul</p>
+
+    <button onclick="myFunction5()">Click Me5</button>
+
+
+    <p id="demo6">Click the button to display the value of the class attribute of the h1 element.</p>
+    <h1 class="democlass">H1 element</h1>
+    <button onclick="myFunction6()">Click Me6</button>
+
+    <p id="demo7">Click the button to add a class attribute "democlass" to h2 element</p>
+    <h2>H2 element</h2>
+    <button onclick="myFunction7()">Click Me7</button>
+
+    <p id="demo8">Click the button to remove the class attribute "democlass" to h3 element</p>
+    <h3 class="democlass">H3 element</h3>
+    <button onclick="myFunction8()">Click Me8</button>
+
+    <p>Click the button to find out if the button element has an onclick attribute.</p>
+    <button id="Btn" onclick="myFunction9()">Click Me9</button>
+    <p id="demo9"></p>
+
+    <p>Click the button to get the style property of the H1 element.</p>
+    <h1 id="h1_10" style="color:red">H1 element</h1>
+    <p id="demo10"></p>
+    <button onclick="myFunction10()">Click Me10</button>
+</body>
+
+<script>
+    function myFunction() {
+        var btn = document.createElement("button");// Create a <button>
+        btn.innerHTML = "Add more buttons to the end of the body"; // Insert text using innerHTML
+        document.body.appendChild(btn);// Append <button> to <body>
+    }
+    function myFunction1() {
+        var node = document.createElement("LI"); //create an LI node
+        var textnode = document.createTextNode("Add Maggie to the end of the list"); //create a Text node
+        node.appendChild(textnode); //append the Text node to the LI node
+        document.getElementById("myList").appendChild(node);
+
+    }
+    function myFunction2() {
+        var node = document.createElement("Li");
+        var textnode = document.createTextNode("Add Maggie to the beginning of the list")
+        node.appendChild(textnode);
+        document.getElementById("myList").insertBefore(node, document.getElementById("myList").childNodes[0]); //insert the LI node before the first child node in the list.
+        // var list = document.getElementById("myList");
+        // list.insertBefore(node, list.childNodes[0]);//insert the LI node before the first child node in the list.
+    };
+
+
+    //append
+    //prepend
+    // $(document).ready(function () {
+    //     $("#btn3").click(function () {
+    //         $("ul").prepend("<li>Prepended item</li>");
+    //     });
+
+    function myFunction3() {
+        var node = document.createElement("Li");
+        var textnode = document.createTextNode("Maggie")
+        node.appendChild(textnode);
+        document.getElementById("myList").replaceChild(node, document.getElementById("myList").childNodes[0]); //insert the LI node before the first child node in the list.
+
+    };
+
+    function myFunction4() {
+        var node = document.getElementById("myList");
+        node.removeChild(node.childNodes[0]);
+
+    }
+
+    //cloneNode
+    function myFunction5() {
+        var node = document.getElementById("myList").lastChild;
+        var cln = node.cloneNode(true);
+        document.getElementById("myList").appendChild(cln);
+
+    }
+    //getAttribute
+    function myFunction6() {
+        var node = document.getElementsByTagName("H1")[0].getAttribute("class");
+        document.getElementById("demo6").innerHTML = node;
+
+    }
+    //setAttribute
+    function myFunction7() {
+        var node = document.getElementsByTagName("H2")[0].setAttribute("class", "democlass");
+        document.getElementById("demo7").innerHTML = node;
+
+    }
+    //removeAttribute
+    function myFunction8() {
+        document.getElementsByTagName("H3")[0].removeAttribute("class");
+    }
+    //hasAttribute
+    function myFunction9() {
+        var node = document.getElementById("Btn").hasAttribute("onclick");
+        document.getElementById("demo9").innerHTML = node;
+
+    }
+    //style property 
+    function myFunction10() {
+        var node = document.getElementById("h1_10").style.color;
+        document.getElementById("demo10").innerHTML = node;
+    }
+
+
+
+</script>
+
+
+</body>
+
+</html>
