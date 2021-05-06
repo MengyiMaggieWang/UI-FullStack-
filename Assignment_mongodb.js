@@ -119,4 +119,7 @@ db.restaurants.find( {"grades.grade":"A",
                       
  //31. find the restaurant name, borough, longitude and attitude and cuisine 
 //for those restaurants which contains 'mon' as three letters somewhere in its name.
-db.restaurants.find( {"name": /.*mon.*/ },  {"name":1,"borough":1,"address.coord":1,"cuisine":1 } )                
+db.restaurants.find( {"name": /.*mon.*/ },  {"name":1,"borough":1,"address.coord":1,"cuisine":1 } )    
+//32. find the restaurant name, borough, longitude and latitude and cuisine 
+//for those restaurants which contain 'Mad' as first three letters of its name. 
+db.restaurants.find( {"name": /^Mad/ },  {"name":1,"borough":1,"address.coord":1,"cuisine":1 } )    
