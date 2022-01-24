@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //prototype --access using prototype
+        function student() {
+             this.name = "john";
+             this.gender = "Male";
+
+        }
+        student.prototype.age = 15;
+// the purpose of using "this" is represent the current object, 
+//outside the object , you use the object name 
+
+        //_proto_ --acess using _proto_
+        var st1 = new student();
+        //attched new property to st1
+        st1.age = 33;
+        console.log(st1.age);
+
+        var st2 = new student();
+        console.log(st2.age);
+
+    console.log(Student.prototype) // show function using prototype
+    console.log(st1._proto_) //show object using _proto_
+
+
+    
+
+
+
+    
+    </script>
+</body>
+</html>

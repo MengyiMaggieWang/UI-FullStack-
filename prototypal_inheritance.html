@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let dragon = {
+            name:'Tanya',
+            fire: true,
+            fight(){
+               return 9
+            },
+            sing(){
+                if(this.fire) // if this.fire is true, then return name
+                    return `I am ${this.name}, the breather of fire`
+            }
+        }
+
+        let lizard = {
+            name : "kiki",
+            fight(){
+                return 5
+            }
+        }
+ /*
+        //we are going to borrow the sing method for the lizard using bind
+        const singLizard = dragon.sing.bind(lizard);
+        //bind redirects the this keyword 
+        console.log(singLizard()) 
+        //it shows undefined because bind redirects the this keyword to lizard 
+        //but lizard 里面没有fire这个属性
+
+*/
+    
+        /////prototypal inheritance//////
+        // we want to tell the lizard should inherit all properties and methods from the dragon
+        lizard.__proto__ = dragon // 注意 是长下划线 __ vs  _
+        console.log(lizard.sing())
+        //what about the properties
+        console.log(lizard.fire); //true is  from dragon
+        //waht about methods? if its own has the function, then return its own function 
+        console.log(lizard.fight()); // return 5 instead of 9
+        // 父母是孩子的原型链
+        console.log(dragon.isPrototypeOf(lizard)) //true "dragon(parent) isProtytypeof lizard(child) ""
+        console.log(lizard.isPrototypeOf(dragon)) //fasle 
+
+
+    </script>
+</body>
+</html>
