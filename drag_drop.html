@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    div{
+        border: 1px solid black;
+        height: 200px;
+        width:300px;  }
+</style>
+<script>
+    function allowDrop(ev){ 
+        ev.preventDefault();  //default open a file in new tab;
+    }
+    function drag(ev){  //  ev.preventDefault();
+    
+        ev.dataTransfer.setData("Text",ev.target.id) 
+        //target where you are draging it ,when you drag a image, it transfters through text format
+    }
+    function drop(ev){
+         ev.preventDefault();
+         var data = ev.dataTransfer.getData("Text");
+         ev.target.appendChild(document.getElementById(data))
+    }
+</script>
+</head>
+<body>
+     <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"> </div> 
+     <div id="div2"  ondrop="drop(event)" ondragover="allowDrop(event)"> 
+        <image ondragstart="drag(event)" draggable="true" style='height: 200px; width:300px;' 
+        src="images/small.jpg" id="drag1"/>
+    </div>
+</body>
+</html>

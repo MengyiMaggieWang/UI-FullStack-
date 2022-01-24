@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="txt" style="font-size:30px;font-family: Arial, Helvetica, sans-serif;"> </div>
+    
+    <script>
+        //var a 
+        function fn() {
+            a =  setTimeout(  /// 注意⚠️： 不能是var a ，var a 只能在function 这个 scope 里 access
+            () => alert("hello"),2000
+          )
+        }
+
+// how to cancel the alert?  
+ function fn1(){
+       clearTimeout(a)
+    }
+
+    function fn2(){
+          b = setInterval( 
+        /* () => alert("goodbye"),2000*/
+        /*()=>document.write("stop me"),1000 //this is bad since the buttons will be vanish*/
+          ()=> console.log("stop me"),1000 //open console to check 
+          )
+    }
+    function fn3(){
+          clearInterval(b)
+    }
+
+
+//create a clock
+//new Date()
+//new Date.toTimeString()
+//new Date().toLocaleTimeString()
+//var t = new Date
+//t.getHours()
+
+   function startTime(){
+       var today = new Date();
+       var h = today.getHours();
+       var m = today.getMinutes();
+       var s = today.getSeconds();
+  
+        //setInterval()
+       //startTime();
+       // Note： here if we use setInterval， then it will get stuck here since setInterval will not stop
+       t = setTimeout(
+           ()=> startTime(),1000
+       )
+
+     //for check time
+     h = checkTime(h)
+     m = checkTime(m)
+     s = checkTime(s)
+
+       function checkTime(i){
+       if(i<10){
+            i = "0"+i
+       }
+       return i;
+   }   
+
+ document.getElementById("txt").innerHTML = h+":"+m+":"+s;
+
+}
+// 注意Endwatch function不能在 start time function 里面， 需要是独立的才行
+// checktime functionz 在startime 里面
+      function fn4()
+       {
+           clearTimeout(t)
+       }
+    
+
+ </Script>
+<button onclick="fn()"> ClickTimeout </button>
+<button onclick="fn1()"> ClearTimeout </button>
+<button onclick="fn2()"> CLickInterval</button>
+<button onclick="fn3()"> ClearInterval</button>
+<button onclick="startTime()">STARTWatch</button>
+<button onclick="fn4()"> EndWatch</button>
+
+
+</body>
+</html>

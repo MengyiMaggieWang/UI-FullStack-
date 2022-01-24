@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{ padding: 0 0 0 40px;}
+
+        .container{
+            background:lightblue;
+            width:700px;
+            margin:70px 0 0 50px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+           /* define the name of the numbers */
+            grid-template-rows: [header-start]120px[header-end menu-start]60px[menu-end box-start] 100px[box-end] 400px 60px;
+            /* grid-row-gap:25px;
+            grid-column-gap:30px; */
+            /* grid-gap:25px 30px; */
+            grid-gap:15px;
+        }
+        
+        .header{
+            background:orangered;
+            /* grid-row-start: 2;
+            grid-row-end: 3; */
+            
+            /* grid-column-start:3;
+            grid-column-end:4; */
+            /* grid-row:2/3;
+            grid-column: 3/4; */
+
+            /* grid-area: 1/1/2/-1; */
+            /* z-index:1; */
+            grid-row:header-start/header-end;
+            grid-column: 1/-1;
+        }
+        .menu{
+            background:yellowgreen;
+            grid-row: menu-start / menu-end;
+            grid-column: 1 / -1;
+        }
+        .box1{
+            background:mediumpurple;
+        }
+        .box2{
+            background:hotpink;
+        }
+        .sidebar{
+            background:royalblue;
+            grid-row:3/5;
+            grid-column:3/4;
+        }
+        .content{
+            background:goldenrod;
+            /* grid-row-start: 1;
+            grid-row-end: 2; */
+            /* grid-row:1/2; */
+            /* grid-column-start:1;
+            grid-column-end:3; */
+            grid-column: 1/ 3;
+        }
+        .footer{
+            background:olive;
+            grid-column: 1/4;
+        }
+        .items{ color:#fff; font-size:20px;}
+    </style>
+</head>
+<body>
+    <h1>CSS Grids</h1>
+    <div class="container">
+        <div class="items header">Header</div>
+        <div class="items menu">Menu</div>
+        <div class="items box1">Box1</div>
+        <div class="items box2">Box2</div>
+        <div class="items sidebar">Sidebar</div>
+        <div class="items content">Content</div>
+        <div class="items footer">Footer</div>
+    </div>
+</body>
+</html>

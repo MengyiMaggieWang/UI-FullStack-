@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span style="background-color: #FFFF00"> your text here</span>  <!-- hide background color -->
+    <br>       
+    <span style='background-image: url(https://picsum.photos/id/237/200/300);'> Background </span>  <!-- set a background img to a span -->
+   <hr>
+   choose a color for the text below <input type='color' id='color_picker' onchange="showHex()">
+   <span id= 'color_hex_value'></span>  
+   <h1>Color Me!!</h1>
+   <script>
+       
+       function showHex(){
+           var hex = document.querySelector("#color_hex_value"), h1 = document.querySelector("h1") //access color value of input and h1
+           h1.style.color = document.querySelector("#color_picker").value //select color and use the value property to access 
+           // assign the color of color picker to h1's color to choose a color for the text 
+       }
+
+   </script>
+
+
+</body>    
+                      
+</html> 

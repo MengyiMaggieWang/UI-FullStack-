@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS display flex vs block; inline & inline block </title>
+
+    <style>
+        body{
+            background:#efefef;
+        }
+        .box{
+            border-bottom: 2px solid black;
+            width: 20%;   /* 设置box 占整个box的比例 20%宽 */
+            height: 20px;
+            /* display: inline;    */
+             /* inline不能应用宽高度 ， inline-block 可以调整 */
+          /* span = width+ display:inline    区别于div span不能调整每个box的宽度 */
+            display: inline-block;  
+            /* set 4 boxes side by side   */
+       
+        }
+
+        .box-blue {
+            background: lightblue;
+        }
+        .box-red {
+            background: red;
+        }
+        .box-purple{
+            background: purple;
+        }
+        .box-orange {
+            background:orange;
+        }
+
+        .container {
+            display: flex;  
+            /* without display: inline-block , flex box can turn boxes into inline and block line element*/
+           /* display: inline-flex;    */
+           /* inline-flex only takes up the width as much as the child needs*/
+            justify-content: center;  
+            /*center the boxes in the line*/
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">  
+<!-- flex require a container*/ -->
+     <div class = "box box-blue">1</div>
+     <div class = "box box-red">2</div>
+     <div class = "box box-purple">3</div>
+    <div class="box box-orange">4</div>
+    </div>
+
+</body>
+</html>

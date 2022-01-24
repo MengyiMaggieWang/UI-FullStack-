@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload file, filename, size</title>
+</head>
+<body>
+<form>
+    <input type="file" multiple id="files">  //select multiple files
+    <output id='list'></output>
+
+    <script>
+        function handleFileSelected(evt){
+            //console.log(evt);
+            var files = evt.target.files;
+            var output = [ ];
+            for(let i = 0; i < files.length; i++){
+                f = files[i] //output array
+                output.push(`<li><strong>`,f.name,`</strong>(`,f.type || 'n//a',')-',f.size,'bytes,last modified:',
+                    f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() :'n//a','</li>');
+                //只为了一个file， 解释是 推进file 的 array，  tag+ file名字+ file类型/not apply 如果file类型不匹配+file大小 用bytes表示
+                //+ lastmodifiedDate ， 如果有， 那就改成 string格式的  +  如果不存在，写成 not apply （：表示为或者 n//a 表示为not apply ）
+                }
+                //for select more than one file                //push in the content
+               document.getElementById('list').innerHTML = '<ul>' + output.join(' ') + '</ul>';
+
+                }
+             document.getElementById('files').addEventListener('change',handleFileSelected, false)
+
+            // home. transform to actual size for files
+    </script>
+</form>
+</body>
+</html>

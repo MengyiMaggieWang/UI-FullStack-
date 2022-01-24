@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .border{
+            border:2px solid lightcoral
+        }
+        .header{
+            background-color: navajowhite;
+            grid-area: hd;
+        }
+        .footer{
+            background-color: navajowhite;
+            grid-area: ft;
+        }
+        .content{
+            grid-area: main;
+            background-color: navajowhite;
+        }
+        .sidebar{
+            grid-area: sd;
+            background-color: navajowhite;
+        }
+        .wrapper{
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            border:3px solid red;
+            color:red;
+            border-radius:5px;
+            grid-auto-rows: minmax(100px, auto);
+            /* grid-template-areas:
+              "hd hd hd hd   hd   hd   hd   hd   hd"
+              "sd sd sd main main main main main main"
+              ". . .  ft ft    ft    ft    ft   ft"
+            ; */
+            grid-template-areas:
+            "hd"
+            "main"
+            "sd"
+            "ft";
+        }
+        @media(min-width:500px){
+            .wrapper{
+                grid-template-columns: repeat(9, 1fr);
+                grid-template-areas:
+                "hd hd hd hd   hd   hd   hd   hd   hd"
+                "sd sd sd main main main main main main"
+                "sd sd sd ft ft    ft    ft    ft   ft"
+                ;
+            }
+        }
+        @media(min-width:700px){
+            .wrapper{
+                grid-template-columns: repeat(9, 1fr);
+                grid-template-areas:
+                "hd hd hd hd   hd   hd   hd   hd   hd"
+                "sd sd sd main main main main ft ft"
+                ;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header border">Header</div>
+        <div class="sidebar border">Sidebar</div>
+        <div class="content border">Content</div>
+        <div class="footer border">Footer</div>
+    </div>
+</body>
+</html>

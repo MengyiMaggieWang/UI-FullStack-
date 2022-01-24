@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>    
+    <!-- pop up dialog box when click button and get the value and cancel or confirm button -->
+      <dialog id="favDialog"> 
+          <form method="dialog">
+              <p> 
+                  <label> favorite meal:
+                    <select>
+                        <option></option>
+                        <option>Brine Shrimp</option>
+                        <option>Red Meat</option>
+                     <option>White Meat</option>
+                    </select>
+                  </label>
+              </p>
+
+               <!-- cancel and confirm button  same as switch on off button ,cancel - close click confirm - return value -->
+             
+               <menu>
+               <button value="cancel">Cancel</button> 
+               <button id="confirmBtn" value="confirm">Confirm</button> 
+               <!-- //  the confirmbtn value "confirm" will always be overwritten by value of select box
+                         confirmBth.value = selectE1.value; ; -->
+            </menu>
+
+           </form>
+        </dialog> 
+
+            <!-- /*menu button*/ -->
+     <menu>
+        <button id="updateDetails">Update Details</button> 
+    </menu>
+
+
+<output> </output>
+  <!-- use js to control button -->
+
+<script>
+    var updateButton = document.getElementById('updateDetails');
+    var favDialog = document.getElementById('favDialog'); /* case sensitive*/
+    var outputBox = document.querySelector('output');
+    var selectEl = document.querySelector('select'); /*select 不是id 不能用 getElementById找 要用 queruSelector*/
+    var confirmBtn = document.getElementById('confirmBtn');
+
+ //给button加event listener
+
+    //"update details" button opens the <dialog> manually;
+    updateButton.addEventListener('click', function onOpen() {
+        // if the type = function exists then show modal
+        if(typeof favDialog.showModal === "function") {
+             favDialog.showModal();
+            //favDialog.showDialog();
+        } else {
+            alert("The <dialog> API is not supported by this browser");
+        }
+        });
+     //"favoruite animal" input sets the value of the submit button to get the value
+ // whenever a vlaue in a select box changes , you take the value from the menu and put it as a value to the confirm button
+    // so the confirmbtn value will always be overwritten by value of select box
+        selectEl.addEventListener('change',function onSelect(e) {
+             confirmBtn.value = selectEl.value;
+             });   
+
+// the "confirm" buttom of form triggers "close" on dialog because of [method='dialog']
+// get the return value of the button when the dialog is closed, which dialog be closed, its value would be returned 
+//confirm get the value from drop down
+    favDialog.addEventListener('close', function onClose() {
+    outputBox.value = favDialog.returnValue + " button clicked - " + (new Date()).toString(); 
+    });
+</script>
+
+</body>
+</html>
+
+<!-- HW: only want the value from select + the "cancel/confirm" button clicked in the dialog box -->

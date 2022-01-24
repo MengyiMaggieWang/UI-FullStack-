@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    * {
+        font-family:Arial,Helvetica,sans-serif;
+    }
+</style>
+</head>
+<body>
+    <form oninput="amount.value=(principal.valueAsNumber * rate.valueAsNumber)/100">  
+        <!-- valueasNumber is used to set the input to number type -->
+    <fieldset>
+        <!-- build a legend -->
+        <legend style='font-weight:bold;'> Interest Calculator </legend> 
+       
+        <!-- //text box setting for principal  Note: 不要用中文的双引号-->
+            <label for= ”principal“> Amount to Invest: $</label>  
+            <input type="number"  id="principal" min="0" value="1000"> 
+
+            <p> <label for="rate">Interest Rate: </label> </p>
+            
+         <!-- //text box setting for int rate --> 
+
+            <input id="rate" type="range" min="0" max="20" oninput="thisRate.value=rate.value"> 
+            <output name="thisRate" for="rate">0</output><span>%</span>               
+                                    <!-- button point to 0 --> 
+
+            <p>
+                Interest Received: <strong>$<output name="amount">0</output></strong>
+            </p>
+    </fieldset> 
+    </form>   
+    <img src="images/small.jpg" alt="">  
+    <!-- how to use range to control the size of the img? -->
+</body>
+  
+</html>

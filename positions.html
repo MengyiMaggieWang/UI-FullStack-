@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+         span {
+            position: relative;
+            display:inline-block;
+             height: 100px;
+             width: 100px;
+             /* background: brown; */
+             border: 1px solid black;
+         }
+
+         body, html{
+             height:100%
+         }
+
+         body{
+             display:flex;
+             justify-content: center;
+             align-items: center;
+         }
+         .parent{
+             border: 2px solid #0064d8;
+             color: #0064d8;
+             padding:20px;
+             position: relative; 
+             /* normally we use relative for parent element */
+         }
+         .element{
+             border: 1px dashed #000;
+             background-color:#eee;
+             padding:20px;
+             color:#000;
+             position: absolute; 
+             /* if parent is static, then child element will be absolute to the document 
+             if parent is non-static(normally set it to relative), then it will be absolute to parent */
+             left:0;
+             right:0;
+             bottom:0;
+         }
+         
+   </style>
+</head>
+<body>
+       <!-- z index is for z height , eft is x , top is y -->
+      <span style="left:0px; top:20px ;background: blue; z-index :-1">span1</span>   
+      <span style="left:-100px; background: chartreuse; z-index: 2 ">span2</span>   
+      <div class="parent"> 
+          Parent element 
+          <div class="element">
+              Child Element 
+          </div>
+      </div>
+</body>
+</html>

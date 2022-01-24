@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+            font-family: 'Lato';
+        }
+
+        .percent-parent {
+            width: 50%;
+            height: 300px;
+            background: orange;
+            padding-top: 75px;
+            margin-bottom: 75px;
+        }
+
+        .percent-child {
+            width: 80%; 
+            /*  80% of parent */
+            height: 150px;
+            background: rgba(125, 255, 0, 0.5);
+        }
+
+        .viewport-parent {
+            width: 50%;
+            height: 300px;
+            background: orange;
+            padding-top: 75px;
+            margin-bottom: 75px;
+        }
+
+        .viewport-child {
+            width: 80vw;
+            /* width:1093px; */
+            height: 150px;
+            background: rgba(125, 0, 255, 0.5);
+        }
+    </style>
+    <script>
+        //clientWidth exclude the scroll bar
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+        document.write(vw + " " + vh)
+    </script>
+</head>
+
+<body>
+    <h1>Viewport Units and Percentage</h1>
+
+    <div class="percent-parent">
+        <div class="percent-child"></div>
+    </div>
+
+    <div class="viewport-parent">
+        <div class="viewport-child"></div>
+    </div>
+</body>
+
+</html>

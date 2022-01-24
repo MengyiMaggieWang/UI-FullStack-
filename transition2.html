@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: gainsboro;
+        }
+        .container{
+            margin: 10px;
+            padding: 30px;
+            background-color: #fff;
+        }
+        .box{
+            padding: 10px;
+            background-color: teal;
+            color: #fff;
+            width: 80px;
+            margin: 20px;
+            position: relative;
+            left: 0;
+            transition-property: left;
+            transition-duration: 1s;
+        }
+        .box p{
+            text-align: center;
+            line-height: 50px;
+        }
+        .container:hover .box{
+            left: 80%;
+        }
+        #ease{
+            transition-timing-function: ease;
+        }
+        #linear{
+            transition-timing-function: linear;
+        }
+        #ease-in{
+            transition-timing-function: ease-in;
+        }
+        #ease-out{
+            transition-timing-function: ease-out;
+        }
+        #ease-in-out{
+            transition-timing-function: cubic-bezier(.32,1.02,.32,.97); 
+            /* define using cubic-bezier */
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box" id="ease">
+            <p>ease</p>
+        </div>
+        <div class="box" id="linear">
+            <p>linear</p>
+        </div>
+        <div class="box" id="ease-in">
+            <p>ease-in</p>
+        </div>
+        <div class="box" id="ease-out">
+            <p>ease-out</p>
+        </div>
+        <div class="box" id="ease-in-out">
+            <p>ease-in-out</p>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drop and drag and preview </title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        a {
+            color: #369;
+        }
+
+        #drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            width: 480px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        #drop-area.highlight {
+            border-color: purple;
+        }
+
+        p {
+            margin-top: 0;
+        }
+
+        .my-form {
+            margin-bottom: 10px;
+        }
+
+        #gallery {
+            margin-top: 10px;
+        }
+
+        #gallery img {
+            width: 150px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .button:hover {
+            background: #ddd;
+        }
+ 
+        #fileElem {
+            display: none;  
+            /* means not visible */
+        }
+    </style>
+</head>
+<!-- first load the dom , then write js to target the element after the element is loaded  -->
+<body>
+    <!-- drop box  select multiple files by using multiple accept-->
+    <div id="drop-area">
+        <form class="my-form">
+            <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+            <label class="button" for="fileElem">Select some files</label>
+        </form>
+        <progress id="progress-bar" max=100 value=0></progress>      <!-- progress bar -->
+    <div id="gallery"></div>
+    </div>
+</body>
+
+<script>
+    // ************************ Drag and drop ***************** //
+    let dropArea = document.getElementById("drop-area") 
+
+        // Prevent default drag behaviors (preventDefaults to prevent the document droped to a new tab )
+        ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false)  
+            document.body.addEventListener(eventName, preventDefaults, false)
+        })
+
+        // Highlight drop area when item is dragged over it
+        ;['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false)
+        })
+
+        ;['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false)
+        })
+
+         
+    // Handle dropped files
+    dropArea.addEventListener('drop', handleDrop, false)
+
+    function preventDefaults(e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+    // highlight the border 
+    function highlight(e) {
+        dropArea.classList.add('highlight')
+    }
+    // unhilight the border by remove the css class "classlist" in javascript  
+    function unhighlight(e) {
+        dropArea.classList.remove('active')
+        dropArea.classList.remove('highlight')
+    }
+
+
+    // whenever files are draged or droped , events will receive args from brower 
+    // the args will be the form of event (e) includes "data transfter" which gives the   "files" that we drag or drop
+    function handleDrop(e) {
+        console.log(e.dataTransfer.files.length);
+        var dt = e.dataTransfer //data transfter object give us a file that was drag or drop and then fire handleDrop 
+        var files = dt.files
+
+        handleFiles(files) /// after drop the file, we need to handle file so call handle file  
+                           /// handle file function initialized in the below
+    }
+
+    let uploadProgress = []
+    let progressBar = document.getElementById('progress-bar')
+
+    function initializeProgress(numFiles) {
+        progressBar.value = 0
+        uploadProgress = []
+
+        for (let i = numFiles; i > 0; i--) {
+            uploadProgress.push(0)
+        }
+    }
+
+    function updateProgress(fileNumber, percent) {
+        uploadProgress[fileNumber] = percent
+        let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+        console.log('update', fileNumber, percent, total)
+        progressBar.value = total
+    }
+    
+
+    function handleFiles(files) {
+        files = [...files]  //initialize an array which equal to the number of files 
+        initializeProgress(files.length) // for uploading the progress bar
+        files.forEach(uploadFile) //call uploadFile function for each file
+        files.forEach(previewFile) //call previewFile function for each file
+    }
+    //create preview function for each file
+    function previewFile(file) {
+        let reader = new FileReader()  //use file reader object to read file
+        reader.readAsDataURL(file) // parse data into url
+        reader.onloadend = function () {
+            let img = document.createElement('img') //create an empty image 
+            img.src = reader.result //set the source 
+            document.getElementById('gallery').appendChild(img) //add the img to the page
+        }
+    }
+ 
+    // upload file using an ajax call
+    function uploadFile(file, i) {
+        var url = 'https://api.cloudinary.com/v1_1/username/image/upload' //username will be replaced per each account
+        var xhr = new XMLHttpRequest()
+        var formData = new FormData()
+        xhr.open('POST', url, true)
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+        // Update progress (can be used to show progress indicator)
+        xhr.upload.addEventListener("progress", function (e) {
+            updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+        })
+
+        xhr.addEventListener('readystatechange', function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                updateProgress(i, 100) // <- Add this
+            }
+            else if (xhr.readyState == 4 && xhr.status != 200) {
+                // Error. Inform the user
+            }
+        })
+
+        formData.append('upload_preset', 'key') //
+        formData.append('file', file)
+        xhr.send(formData)
+    }
+</script>
+</html>

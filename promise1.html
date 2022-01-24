@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        function doubleAfter2Seconds(x){
+            return new Promise(resolve => {
+                setTimeout(
+                    ()=>{resolve(x*2)},2000
+                )
+            })
+        }
+        doubleAfter2Seconds(10).then(r=>{
+            console.log(r)
+        })
+
+        let sum = doubleAfter2Seconds(10) + doubleAfter2Seconds(20)+doubleAfter2Seconds(30);
+        console.log(sum);
+   
+        //call back hell
+       function addPromise(x){
+           return new Promise(resolve =>{
+               doubeleAfter2Seconds(10).then((a)=>{ //a = doubeleAfter2Seconds(10)
+                doubeleAfter2Seconds(20).then((b)=>{ // b=  doubeleAfter2Seconds(20)
+                 doubleAfter2Seconds(30).then((c)=>{//c = doubleAfter2Seconds(30)
+                     resolve(x+a+b+c)
+                 })
+                })
+               })
+           })
+       }
+       addPromise(10).then(r=>{
+           console.log(r)
+       })
+
+       console.log(sum);
+     
+       */
+
+    //solve call back hell use await inside async function
+
+
+    function doubleAfter2Seconds(x){
+            return new Promise(resolve => {
+                setTimeout(
+                    ()=>{resolve(x*2)},2000
+                )
+            })
+        }
+        //solve async function in a sync way
+       async function addAsync(x){
+           const a = await doubleAfter2Seconds(10);
+           // when this line is run, the rest would be block and wait until this has been finished
+           const b = await doubleAfter2Seconds(20);
+           const c = await doubleAfter2Seconds(30);
+           return x+a+b+c //async function always returns a promise
+
+       }
+      
+       addAsync(10).then(r=> 
+       console.log(r))
+
+       //async function always returns a promise
+       async function fn(){
+           return 22;//22 will be return as a promise
+       }
+       //use then to print it out
+       fn().then(r=>{
+           console.log(r)
+       })
+    </script>
+</body>
+</html>

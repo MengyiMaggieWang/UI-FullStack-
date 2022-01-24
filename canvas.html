@@ -1,0 +1,41 @@
+<!-- do graphics -2D or 3D images  -->
+<!-- normally put img inside div , how to put img in the canvas? -->
+<!-- usecase: drag and drop -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<img>
+    <canvas
+        id="canvas"
+        style="border:1px solid red;"
+        height="500px"
+        width="500px">
+    </canvas>
+    <img src="images/small.jpg" alt=" "> 
+    <script>
+    //     var image= new image()
+    //     image.src = 'images/small.jpg'
+    //     image.alt = 'The missing image'
+    //    document.body.appendChild(image)
+
+        var canvas = document.getElementById("canvas"); // place into the canvas, need to refer to it 
+        var ctx = canvas.getContext('2d');
+        var image = new Image();
+        image.src= 'images/small.jpg'
+        image.alt = 'The missing image' // alt text
+
+        image.onload = () => {
+            ctx.drawImage(image,0,0,1920,1080,0,0,500,500) // fit in the img size 1920*1080 from 0,0 to 500,500 canvas is a square
+    // if you would like to fit in img inside canvas, you need drawImage function
+        }
+
+    </script>
+   
+
+</body>
+</html>
